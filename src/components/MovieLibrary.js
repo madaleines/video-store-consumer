@@ -39,7 +39,6 @@ class MovieLibrary extends Component {
   render() {
     let movieList = this.state.movies;
 
-    // is this nested? how do I call movie? ask maddy when she wakes up
     const list = movieList.map((movie) => {
       return <Movie
       key={movie.id}
@@ -53,7 +52,7 @@ class MovieLibrary extends Component {
 
     return (
       <div className="movie-list">
-      { list  }
+     { list  }
       </div>
     )
   }
