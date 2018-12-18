@@ -22,8 +22,9 @@ class Movie extends Component {
   render(){
     return(
       <ul>
-        { this.props.title }
+      { this.props.title }
       </ul>
+  
     )
   }
 }
