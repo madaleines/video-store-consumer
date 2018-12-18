@@ -6,25 +6,30 @@ import './Movie.css';
 class Movie extends Component {
   constructor(props) {
     super(props);
-
-    // movie params: id, title, overview, release_date, image_url, external_id
-    this.state = {
-      id: this.props.id,
-      title: this.props.title,
-      overview: this.props.overview,
-      release_date: this.props.release_date,
-      image: this.props.image_url,
-      external_id: this.props.external_id,
-
-    }
   }
 
-  render(){
+  renderMovieDetails = () => {
+    return (
+      <section>
+        <img src={ this.props.image } />
+
+        <p className="movie__content-dets">
+          { this.props.title  }
+          { this.props.overview  }
+          { this.props.release_date  }
+        </p>
+      </section>
+    )
+  }
+
+  render() {
+    const renderedmovieDetails = this.renderMovieDetails()
     return(
-      <ul>
-      { this.props.title }
-      </ul>
-  
+      <section className="movie">
+        <div className="movie__content">
+          { renderedmovieDetails }
+        </div>
+      </section>
     )
   }
 }
