@@ -22,7 +22,7 @@ class Movie extends Component {
   render(){
     return(
       <ul>
-        <li>this.props.title</li>
+        { this.props.title }
       </ul>
     )
   }

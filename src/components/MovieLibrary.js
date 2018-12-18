@@ -53,7 +53,7 @@ class MovieLibrary extends Component {
 
     return (
       <div className="movie-list">
-      { list }
+      { list  }
       </div>
     )
   }
