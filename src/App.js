@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import './App.css';
+import SearchForm from './components/SearchForm'
 import MovieLibrary from './components/MovieLibrary'
 import CustomersList from './components/CustomersList'
 import PropTypes from 'prop-types';
@@ -42,12 +43,15 @@ class App extends Component {
           </nav>
 
           <div className="main-container">
+            <Route path="/search"
+              render={ (props) => <SearchForm {...props}  />}
+            />
 
               <Route path="/library"
-                render={ (props) => <MovieLibrary {...props} getRentalSelection={ this.setRentalSelection } />}
+                render={ (props) => <MovieLibrary {...props}  />}
               />
               <Route path="/customers"
-                render={ (props) => <CustomersList {...props} getRentalSelection={ this.setRentalSelection } />}
+                render={ (props) => <CustomersList {...props}  />}
               />
             </div>
         </section>

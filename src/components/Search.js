@@ -16,7 +16,7 @@ class Search extends Component{
   searchMovie = (title) => {
     console.log("searching...searching...");
     SEARCH_URL = "localhost3000/movies "
-    axios.get(SEARCH_URL + title);
+    axios.get(SEARCH_URL + title)
     //promise
     .then((response) => ({
       this.setState({
