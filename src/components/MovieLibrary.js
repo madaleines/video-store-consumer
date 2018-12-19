@@ -36,6 +36,7 @@ class MovieLibrary extends Component {
   }
 
   // movie params: id, title, overview, release_date, image_url, external_id
+  // put a click event handler function up here to be called down below in the show movies callback
   render() {
     let movieList = this.state.movies;
 
@@ -52,14 +53,14 @@ class MovieLibrary extends Component {
 
     return (
       <div className="movie-list">
-     { list  }
+     showMoviesCallback = { list  }
       </div>
     )
   }
 }
 
 MovieLibrary.propTypes = {
-
+  showMoviesCallback: PropTypes.func
 };
 
 export default MovieLibrary;
