@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import './SearchForm.css';
 
 class SearchForm extends Component {
@@ -7,7 +8,8 @@ class SearchForm extends Component {
     super(props);
 
     const resetState = {
-      text: '',
+      query: '',
+      searchResults: []
     };
 
     this.state = {...resetState};
@@ -24,9 +26,22 @@ class SearchForm extends Component {
   submitForm = (event) => {
     event.preventDefault();
     const query = {...this.state};
-    this.props.searchCallback(query);
+    const SEARCH_URL = `http://localhost:3000/movies?query=${query}`;
+    axios.get(SEARCH_URL)
+    .then((response) => {
+      this.setState({searchResults: response.data})
+    })
+    .catch((error) => {
+      this.setState({ message: error.message});
+    })
+
+    console.log(query)
+    console.log(this.state.searchResults)
+
+
     this.setState(this.resetState);
-  };
+  }
+
 
   render() {
     return (
@@ -34,7 +49,7 @@ class SearchForm extends Component {
         <h3 className="search-form__header">Create a New Inspiration</h3>
         <form onSubmit={ this.submitForm } className="search-form__form">
           <label htmlFor="text" className="search-form__form-label">Movie Title: </label>
-          <textarea name="text" value={this.state.text}
+          <textarea name="query" value={this.state.query}
           onChange={ this.onFieldChange } className="search-form__form-textarea"/>
           <input type="submit" value="Search" className="search-form__form-button"/>
         </form>
@@ -44,7 +59,6 @@ class SearchForm extends Component {
 }
 
 SearchForm.propTypes = {
-  searchCallback: PropTypes.func.isRequired
 };
 
 export default SearchForm;
