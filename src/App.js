@@ -32,7 +32,7 @@ class App extends Component {
       <div className="App">
       <h1>Does this render??</h1>
 
-      <CustomersList/>
+      <MovieLibrary/>
       </div>
     );
   }
