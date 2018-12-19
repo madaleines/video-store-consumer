@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import './App.css';
 import MovieLibrary from './components/MovieLibrary'
 import CustomersList from './components/CustomersList'
@@ -18,22 +19,39 @@ class App extends Component {
       customer: null,
     }
   }
-// for the movies to be added after <MovieLibrary/>
-  // showMovies = (e) => {
-  //   console.log("movies are about to be shown");
-  //   this.props.showMoviesCallback(this.props.movies)
-  // }
-
-// put a button down bellow for the movies
 
   render() {
-
     return (
-      <div className="App">
-      <h1>Does this render??</h1>
+      <Router>
+        <section className="heading-container">
+          <h1 className="app-heading">
+            <Link to="/" className="route-link">Home</Link>
+          </h1>
+          <nav>
+            <ul className="link-container">
+              <li>
+                <Link to="/search" className="route-link">Movie Search</Link>
+              </li>
+              <li>
+                <Link to="/library" className="route-link">Movie Library</Link>
+              </li>
+              <li>
+                <Link to="/customers" className="route-link">Customer List</Link>
+              </li>
+            </ul>
+          </nav>
 
-      <MovieLibrary/>
-      </div>
+          <div className="main-container">
+
+              <Route path="/library"
+                render={ (props) => <MovieLibrary {...props} getRentalSelection={ this.setRentalSelection } />}
+              />
+              <Route path="/customers"
+                render={ (props) => <CustomersList {...props} getRentalSelection={ this.setRentalSelection } />}
+              />
+            </div>
+        </section>
+      </Router>
     );
   }
 }

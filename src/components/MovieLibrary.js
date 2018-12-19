@@ -10,7 +10,6 @@ class MovieLibrary extends Component {
   constructor() {
     super();
 
-    // initial state is an empty array
     this.state = {
       movies: [],
     };
@@ -19,15 +18,12 @@ class MovieLibrary extends Component {
   componentDidMount() {
     console.log("hi maddy I am mounting the DOM");
     const GET_THE_LIBRARY_MOVIES = "http://localhost:3000/movies";
-
-    // promise
     axios.get(GET_THE_LIBRARY_MOVIES)
     .then((response)=> {
       this.setState({
         movies: response.data,
       });
     })
-    // if nothing is retrieved, cancel Xmas
     .catch((error) => {
       this.setState({
         error: error.message
@@ -35,8 +31,6 @@ class MovieLibrary extends Component {
     });
   }
 
-  // movie params: id, title, overview, release_date, image_url, external_id
-  // put a click event handler function up here to be called down below in the show movies callback
   render() {
     let movieList = this.state.movies;
 
@@ -53,14 +47,13 @@ class MovieLibrary extends Component {
 
     return (
       <div className="movie-list">
-     showMoviesCallback = { list  }
+      { list  }
       </div>
     )
   }
 }
 
 MovieLibrary.propTypes = {
-  showMoviesCallback: PropTypes.func
 };
 
 export default MovieLibrary;
