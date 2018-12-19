@@ -36,7 +36,7 @@ class Search extends Component{
 
 render() {
   return (
-    <SearchForm callback>
+    <SearchForm searchCallback={this.searchMovie}>
 
 
   )

@@ -24,6 +24,7 @@ class SearchForm extends Component {
   submitForm = (event) => {
     event.preventDefault();
     const query = {...this.state};
+    // link this up above?
     this.props.searchCallback(query);
     this.setState(this.resetState);
   };
