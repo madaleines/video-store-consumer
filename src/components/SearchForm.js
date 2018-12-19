@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './SearchForm.css';
+import Movie from './Movie';
+
 
 class SearchForm extends Component {
   constructor(props) {
@@ -48,6 +50,20 @@ class SearchForm extends Component {
 
 
   render() {
+    let searchList = this.state.searchResults
+
+    const list = searchList.map((movie) => {
+      return <Movie
+      key={movie.id}
+      id={movie.id}
+      title={movie.title}
+      overview={movie.overview}
+      release_date={movie.release_date}
+      image={movie.image_url}
+      />
+    });
+
+
     return (
       <section className="search-form">
         <h3 className="search-form__header"></h3>
@@ -57,7 +73,7 @@ class SearchForm extends Component {
             onChange={ this.onFieldChange } className="search-form__form-text"/>
           <input type="submit" value="Search" className="search-form__form-button"/>
         </form>
-        <div>{this.state.searchResults.length}</div>
+        <div>{ list }</div>
       </section>
     )
   }
