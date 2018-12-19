@@ -51,12 +51,12 @@ class SearchForm extends Component {
 
 // add a feature to add selected movie to library, add a click event here to connect it to the movie itself
 
-  addMovie = (movie) => {
+  addMovie = (id) => {
     // write some endpoint in the rails app that accepts a new pet ugggghghghghlsjdlsfjlskfjlsjflkdsjfldsjflssrf
     const ADD_URL = ""
     // use the .find method to find the movie by the external id...
-
-    const url = ADD_URL + '?title=' + movie.title;
+    const movie = this.state.movies.find(movie.external_id === id);
+    const url = ADD_URL + '/movies/' + id;
 
     axios.post(url)
     .then((response) => {
