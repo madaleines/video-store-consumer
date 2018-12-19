@@ -38,7 +38,6 @@ class SearchForm extends Component {
     console.log(query)
     console.log(this.state.searchResults)
 
-
     this.setState(this.resetState);
   }
 
