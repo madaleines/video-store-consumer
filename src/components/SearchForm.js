@@ -49,69 +49,60 @@ class SearchForm extends Component {
     this.setState(this.resetState);
   }
 
-// add a feature to add selected movie to library, add a click event here to connect it to the movie itself
-
-  addMovie = (id) => {
-    // write some endpoint in the rails app that accepts a new pet ugggghghghghlsjdlsfjlskfjlsjflkdsjfldsjflssrf
-    const ADD_URL = ""
-    // use the .find method to find the movie by the external id...
-    const movie = this.state.movies.find(movie.external_id === id);
-    const url = ADD_URL + '/movies/' + id;
-
-    axios.post(url)
+  onClickAddMovie(event, movie) {
+    const ADD_MOVIE_URL = `http://localhost:3000/movies`;
+    console.log(event);
+    console.log(movie);
+    axios.post(ADD_MOVIE_URL, movie)
     .then((response) => {
-      console.log("youre about to add a movie");
-
-      // update the movie list with the new added movie
-      const updatedMovieList = [ ...this.state.movies]
-
-      // set state to rerender the list in the movie library
-
-      this.setState({
-        movies: updatedMovieList,
-      })
+      console.log(response);
+      alert(`Successfully added ${movie.title} to Library`)
     })
     .catch((error) => {
       this.setState({
         error: error.message
       });
     });
+
   }
-
-
 
   render() {
     let searchList = this.state.searchResults
 
-    const list = searchList.map((movie) => {
-      return <Movie
+    const list = searchList.map((movie, index) => {
+      return <div key={index}>
+      <Movie
       key={movie.id}
       id={movie.id}
       title={movie.title}
       overview={movie.overview}
       release_date={movie.release_date}
       image={movie.image_url}
-
       />
+      <button onClick={ (event) => this.onClickAddMovie(event, movie) } >
+      Add to Library
+      </button>
+      </div>
     });
 
 
     return (
       <section className="search-form">
-        <h3 className="search-form__header"></h3>
-        <form onSubmit={ this.submitForm } className="search-form__form">
-          <label htmlFor="text" className="search-form__form-label">Movie Title: </label>
-          <textarea type= "text" name="query" value={this.state.query}
-            onChange={ this.onFieldChange } className="search-form__form-text"/>
-          <input type="submit" value="Search" className="search-form__form-button"/>
-        </form>
-        <div>{ list }</div>
+      <h3 className="search-form__header"></h3>
+      <form onSubmit={ this.submitForm } className="search-form__form">
+      <label htmlFor="text" className="search-form__form-label">Movie Title: </label>
+      <textarea type= "text" name="query" value={this.state.query}
+      onChange={ this.onFieldChange } className="search-form__form-text"/>
+      <input type="submit" value="Search" className="search-form__form-button"/>
+      </form>
+      <div>{ list }</div>
       </section>
     )
   }
 }
 
 SearchForm.propTypes = {
+  addMovie: PropTypes.func.isRequired,
 };
 
 export default SearchForm;
