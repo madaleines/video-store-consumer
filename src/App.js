@@ -58,61 +58,48 @@ class App extends Component {
 
             <header >
               <Link to="/" className="route-link">Maddy Kat Video Store</Link>
-              </header>
+            </header>
 
-              <nav>
+            <nav>
+              <div className="search-movies-customer">
+                <Link to="/search" className="movie-search">Movie Search</Link>
+                <Link to="/library" className="movie-library">Movie Library</Link>
+                <Link to="/customers" className="customer-search">Customer List</Link>
+              </div>
 
-                <div className="search-movies-customer">
+              <div className="checkout-buttons">
+                <div className="selected">
+                  {this.state.selectedMovie}
+                </div>
+                <div className="selected">
+                  {this.state.selectedCustomer}
+                </div>
+                <button Checkout></button>
+              </div>
+            </nav>
 
-                  <Link to="/search" className="movie-search">Movie Search</Link>
+            <div className="lists">
+              <Route path="/search"
+                render={ (props) => <SearchForm {...props}
+                addMovie={ (movie) => this.addMovie(movie)}  />}
+                />
 
-
-                  <Link to="/library" className="movie-library">Movie Library</Link>
-
-
-                  <Link to="/customers" className="customer-search">Customer List</Link>
+              <Route path="/library"
+                render={ (props) =>
+                  <MovieLibrary
+                    {...props}
+                    addMovieRental = {this.addToRentMovie}
+                    />}
+                    />
+                  <Route path="/customers"
+                    render={ (props) =>
+                      <CustomersList
+                        {...props}
+                        addCustomerRental = {this.addCustomerToRent}
+                        />}
+                        />
+                    </div>
                   </div>
-
-                  <div className="selected">
-                    {this.state.selectedMovie}
-                  </div>
-
-                  <div className="selected">
-                    {this.state.selectedCustomer}
-                  </div>
-
-                  <button Checkout></button>
-
-
-
-
-                <Route path="/search"
-                  render={ (props) => <SearchForm {...props}
-                  addMovie={ (movie) => this.addMovie(movie)}  />}
-                  />
-
-                <Route path="/library"
-                  render={ (props) =>
-                    <MovieLibrary
-                      {...props}
-                      addMovieRental = {this.addToRentMovie}
-                      />}
-                      />
-                    <Route path="/customers"
-                      render={ (props) =>
-                        <CustomersList
-                          {...props}
-                          addCustomerRental = {this.addCustomerToRent}
-                          />}
-                          />
-                          </nav>
-
-
-
-                      </div>
-
-
-
                 </Router>
               );
             }
