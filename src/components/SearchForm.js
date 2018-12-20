@@ -50,15 +50,17 @@ class SearchForm extends Component {
   }
 
   onClickAddMovie(event, movie) {
-    const ADD_MOVIE_URL = `http://localhost:3000/movies`;
-    console.log(event);
-    console.log(movie);
-    axios.post(`${ADD_MOVIE_URL}?title=${movie.title}&overview=${movie.overview}&release_date=${movie.release_date}&image_url=${movie.image_url}&external_id=${movie.external_id}`)
+    const externalId = movie.external_id;
+    const ADD_MOVIE_URL = `http://localhost:3000/movies` + '?external_id=' + externalId;
+    axios.post(ADD_MOVIE_URL)
     .then((response) => {
+      console.log(ADD_MOVIE_URL);
       console.log(response);
       alert(`Successfully added ${movie.title} to Library`)
     })
     .catch((error) => {
+      console.log(error);
+      console.log(ADD_MOVIE_URL);
       this.setState({
         error: error.message
       });
@@ -70,19 +72,17 @@ class SearchForm extends Component {
     let searchList = this.state.searchResults
 
     const list = searchList.map((movie, index) => {
-      return <div key={index}>
-      <Movie
-      key={movie.id}
-      id={movie.id}
-      title={movie.title}
-      overview={movie.overview}
-      release_date={movie.release_date}
-      image={movie.image_url}
-      />
-      <button onClick={ (event) => this.onClickAddMovie(event, movie) } >
-      Add to Library
-      </button>
-      </div>
+      return (
+        <div key={index}>
+        <Movie
+        title={movie.title}
+        movie={movie}
+        />
+        <button onClick={ (event) => this.onClickAddMovie(event, movie) } >
+        Add to Library
+        </button>
+        </div>
+      )
     });
 
 
