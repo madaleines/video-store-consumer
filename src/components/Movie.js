@@ -6,7 +6,15 @@ import './Movie.css';
 class Movie extends Component {
   constructor(props) {
     super(props);
+
   }
+
+  selectMovieRental=() => {
+    this.props.addToRentClickHandler(this.props.title);
+
+  }
+
+
 
   renderMovieDetails = () => {
     return (
@@ -29,6 +37,9 @@ class Movie extends Component {
         <div className="movie__content">
           { renderedmovieDetails }
         </div>
+        <button className="movie__rental" onClick={this.selectMovieRental}>
+          Select For Rental
+        </button>
       </section>
     )
   }
@@ -41,6 +52,7 @@ Movie.propTypes = {
   release_date: PropTypes.string,
   image: PropTypes.string,
   external_id: PropTypes.string,
+  selectMovieRental: PropTypes.func,
 };
 
 export default Movie;

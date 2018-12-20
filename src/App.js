@@ -6,8 +6,6 @@ import MovieLibrary from './components/MovieLibrary'
 import CustomersList from './components/CustomersList'
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -20,7 +18,15 @@ class App extends Component {
     this.state = {
       movies: null,
       customer: null,
+      selectedCustomer: "None",
+      selectedMovie: "None",
     }
+  }
+
+  addToRentMovie = (movie) => {
+    this.setState({
+      selectedMovie: movie.title,
+    })
   }
 
   addMovie = (movie) => {
@@ -28,7 +34,7 @@ class App extends Component {
     axios.post(ADD_MOVIE_URL, movie)
     .then(() => {
       this.setState({
-        message: `Added mvoie` });
+        message: `Added movie` });
       })
       .catch((error) => {
         this.setState( {error: error.message} );
@@ -38,22 +44,25 @@ class App extends Component {
     render() {
       return (
         <Router>
-          <section className="heading-container">
+          <section className="navbar__nav">
             <h1 className="app-heading">
-              <Link to="/" className="route-link">Home</Link>
+              <Link to="/" className="route-link">Maddy Kat Video Store</Link>
             </h1>
             <nav>
-              <ul className="link-container">
-                <li>
-                  <Link to="/search" className="route-link">Movie Search</Link>
-                </li>
-                <li>
-                  <Link to="/library" className="route-link">Movie Library</Link>
-                </li>
-                <li>
-                  <Link to="/customers" className="route-link">Customer List</Link>
-                </li>
-              </ul>
+              <div className="navbar__nav ">
+
+                  <Link to="/search" className="navbar__nav-item">Movie Search</Link>
+
+
+                  <Link to="/library" className="navbar__nav-item">Movie Library</Link>
+
+
+                  <Link to="/customers" className="navbar__nav-item">Customer List</Link>
+                  <div>
+                    {this.state.selectedMovie}
+                  </div>
+
+              </div>
             </nav>
 
             <div className="main-container">
@@ -63,7 +72,11 @@ class App extends Component {
                 />
 
               <Route path="/library"
-                render={ (props) => <MovieLibrary {...props}  />}
+                render={ (props) =>
+                  <MovieLibrary
+                    {...props}
+                    addMovieRental = {this.addToRentMovie}
+                     />}
                 />
               <Route path="/customers"
                 render={ (props) => <CustomersList {...props}  />}

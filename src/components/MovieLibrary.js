@@ -42,6 +42,9 @@ class MovieLibrary extends Component {
       overview={movie.overview}
       release_date={movie.release_date}
       image={movie.image_url}
+      addToRentClickHandler={() =>
+        this.props.addMovieRental(movie)}
+
       />
     });
 
