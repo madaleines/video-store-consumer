@@ -56,29 +56,41 @@ class App extends Component {
 
           <div className="main">
 
-            <header >
-              <Link to="/" className="route-link">Maddy Kat Video Store</Link>
-            </header>
+            <section className="title-bar" >
+              <div className="title">
+                <h2>I AM HERE PUT LINK BACK </h2>
+              </div>
+            </section>
 
             <nav>
-              <div className="search-movies-customer">
-                <Link to="/search" className="movie-search">Movie Search</Link>
-                <Link to="/library" className="movie-library">Movie Library</Link>
-                <Link to="/customers" className="customer-search">Customer List</Link>
-              </div>
+              <section className="links">
+                  <div className="search-movies-customer">
+                    <button type="button" className="btn btn-outline-success btn-margin">
+                      <Link to="/search" className="movie-search">Movie Search</Link>
+                    </button>
+                    <button type="button" className="btn btn-outline-success btn-margin">
+                      <Link to="/library" className="movie-library">Movie Library</Link>
+                    </button>
+                    <button type="button" className="btn btn-outline-success" >
+                    <Link to="/customers" className="customer-search">Customer List</Link>
+                    </button>
+                  </div>
 
-              <div className="checkout-buttons">
-                <div className="selected">
-                  {this.state.selectedMovie}
-                </div>
-                <div className="selected">
-                  {this.state.selectedCustomer}
-                </div>
-                <button Checkout></button>
-              </div>
+                  <div className="checkout-buttons">
+                    <div className="selected">
+                      {this.state.selectedMovie}
+                    </div>
+                    <div className="selected-katrina">
+                      {this.state.selectedCustomer}
+                    </div>
+                    <button type="button">Check Out</button>
+                  </div>
+
+                </section>
             </nav>
 
-            <div className="lists">
+
+            <div className="lists-katrina">
               <Route path="/search"
                 render={ (props) => <SearchForm {...props}
                 addMovie={ (movie) => this.addMovie(movie)}  />}
@@ -98,7 +110,9 @@ class App extends Component {
                         addCustomerRental = {this.addCustomerToRent}
                         />}
                         />
-                    </div>
+              </div>
+
+
                   </div>
                 </Router>
               );
