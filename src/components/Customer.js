@@ -19,14 +19,34 @@ class Customer extends Component {
     }
   }
 
+  selectCustomerRental = () => {
+    this.props.selectCustomerToRent(this.props.title);
+  }
+
+  renderCustomerDetails = () => {
+  return (
+    <section>
+      <p className="customer__content-dets">
+        Name: { this.props.name }
+        Movies Checked Out: { this.props.movies_checked_out_count}
+      </p>
+    </section>
+  )
+
+  }
+
   render() {
-
+    const renderedcustomerDetails = this.renderCustomerDetails()
     return(
-
-      <ul>
-      { this.props.name }
-      { this.props.movies_checked_out_count}
-      </ul>
+      <section className="customer">
+        <div className="customer__content">
+          { renderedcustomerDetails }
+        </div>
+        <button className="customer__rental"
+          onClick={this.selectCustomerRental}>
+          Select Customer
+        </button>
+      </section>
     )
   }
 }

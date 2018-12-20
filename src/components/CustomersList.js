@@ -37,23 +37,25 @@ class CustomerList extends Component {
 
     const list = customerList.map((customer) => {
       return <Customer
-      key={customer.id}
-      id={customer.id}
-      name={customer.name}
-      movies_checked_out_count={customer.movies_checked_out_count}
-      />
-    });
+        key={customer.id}
+        id={customer.id}
+        name={customer.name}
+        movies_checked_out_count={customer.movies_checked_out_count}
+        selectCustomerToRent={() =>
+          this.props.addCustomerRental(customer)}
+          />
+      });
 
-    return (
-      <div className="customer-list">
-      { list  }
-      </div>
-    )
+      return (
+        <div className="customer-list">
+          { list  }
+        </div>
+      )
+    }
   }
-}
 
-CustomerList.propTypes = {
+  CustomerList.propTypes = {
 
-};
+  };
 
-export default CustomerList;
+  export default CustomerList;

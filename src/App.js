@@ -23,9 +23,17 @@ class App extends Component {
     }
   }
 
+// rerender selected movie
   addToRentMovie = (movie) => {
     this.setState({
       selectedMovie: movie.title,
+    })
+  }
+
+// rerender selected customer
+  addCustomerToRent = (customer) => {
+    this.setState({
+      selectedCustomer: customer.name,
     })
   }
 
@@ -61,6 +69,10 @@ class App extends Component {
                   <div>
                     {this.state.selectedMovie}
                   </div>
+                  <div>
+                    {this.state.selectedCustomer}
+
+                  </div>
 
               </div>
             </nav>
@@ -79,7 +91,11 @@ class App extends Component {
                      />}
                 />
               <Route path="/customers"
-                render={ (props) => <CustomersList {...props}  />}
+                render={ (props) =>
+                  <CustomersList
+                    {...props}
+                    addCustomerRental = {this.addCustomerToRent}
+                     />}
                 />
             </div>
           </section>

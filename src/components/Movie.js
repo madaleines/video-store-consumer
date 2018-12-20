@@ -9,7 +9,7 @@ class Movie extends Component {
 
   }
 
-  selectMovieRental=() => {
+  selectMovieRental = () => {
     this.props.addToRentClickHandler(this.props.title);
 
   }
