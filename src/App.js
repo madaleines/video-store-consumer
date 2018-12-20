@@ -23,14 +23,14 @@ class App extends Component {
     }
   }
 
-// rerender selected movie
+  // rerender selected movie
   addToRentMovie = (movie) => {
     this.setState({
       selectedMovie: movie.title,
     })
   }
 
-// rerender selected customer
+  // rerender selected customer
   addCustomerToRent = (customer) => {
     this.setState({
       selectedCustomer: customer.name,
@@ -51,62 +51,76 @@ class App extends Component {
 
     render() {
       return (
+
         <Router>
-          <section className="navbar__nav">
-            <h1 className="app-heading">
+
+          <div className="main">
+
+            <header >
               <Link to="/" className="route-link">Maddy Kat Video Store</Link>
-            </h1>
-            <nav>
-              <div className="navbar__nav ">
+              </header>
 
-                  <Link to="/search" className="navbar__nav-item">Movie Search</Link>
+              <nav>
+
+                <div className="search-movies-customer">
+
+                  <Link to="/search" className="movie-search">Movie Search</Link>
 
 
-                  <Link to="/library" className="navbar__nav-item">Movie Library</Link>
+                  <Link to="/library" className="movie-library">Movie Library</Link>
 
 
-                  <Link to="/customers" className="navbar__nav-item">Customer List</Link>
-                  <div>
+                  <Link to="/customers" className="customer-search">Customer List</Link>
+                  </div>
+
+                  <div className="selected">
                     {this.state.selectedMovie}
                   </div>
-                  <div>
-                    {this.state.selectedCustomer}
 
+                  <div className="selected">
+                    {this.state.selectedCustomer}
                   </div>
 
-              </div>
-            </nav>
+                  <button Checkout></button>
 
-            <div className="main-container">
-              <Route path="/search"
-                render={ (props) => <SearchForm {...props}
-                addMovie={ (movie) => this.addMovie(movie)}  />}
-                />
 
-              <Route path="/library"
-                render={ (props) =>
-                  <MovieLibrary
-                    {...props}
-                    addMovieRental = {this.addToRentMovie}
-                     />}
-                />
-              <Route path="/customers"
-                render={ (props) =>
-                  <CustomersList
-                    {...props}
-                    addCustomerRental = {this.addCustomerToRent}
-                     />}
-                />
-            </div>
-          </section>
-        </Router>
-      );
-    }
-  }
 
-  App.defaultProps = {
-    title: PropTypes.string,
-    movies: PropTypes.string,
-  }
 
-  export default App;
+                <Route path="/search"
+                  render={ (props) => <SearchForm {...props}
+                  addMovie={ (movie) => this.addMovie(movie)}  />}
+                  />
+
+                <Route path="/library"
+                  render={ (props) =>
+                    <MovieLibrary
+                      {...props}
+                      addMovieRental = {this.addToRentMovie}
+                      />}
+                      />
+                    <Route path="/customers"
+                      render={ (props) =>
+                        <CustomersList
+                          {...props}
+                          addCustomerRental = {this.addCustomerToRent}
+                          />}
+                          />
+                          </nav>
+
+
+
+                      </div>
+
+
+
+                </Router>
+              );
+            }
+          }
+
+          App.defaultProps = {
+            title: PropTypes.string,
+            movies: PropTypes.string,
+          }
+
+          export default App;
