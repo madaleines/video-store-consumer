@@ -20,12 +20,11 @@ class Movie extends Component {
     return (
       <section>
         <img src={ this.props.image } />
-
-        <p className="movie__content-dets">
+        <div className="movie__content-dets">
           { this.props.title  }
           { this.props.overview  }
           { this.props.release_date  }
-        </p>
+        </div>
       </section>
     )
   }

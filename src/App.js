@@ -67,7 +67,6 @@ class App extends Component {
     return (
 
       <Router>
-
         <div className="main">
 
           <header >
@@ -119,6 +118,60 @@ class App extends Component {
                       addCustomerRental = {this.addCustomerToRent}
                       />}
                       />
+              <div className="title">
+                <h2 id="header">Mad Kat Videos </h2>
+              </div>
+
+            <nav>
+              <section className="links">
+                <div className="search-movies-customer">
+                  <button type="button" className="btn btn-secondary btn-margin">
+                    <Link to="/search" className="movie-search">Movie Search</Link>
+                  </button>
+                  <button type="button" className="btn btn-secondary btn-margin">
+                    <Link to="/library" className="movie-library">Movie Library</Link>
+                  </button>
+                  <button type="button" className="btn btn-secondary" >
+                    <Link to="/customers" className="customer-search">Customer List</Link>
+                  </button>
+                </div>
+
+                <div className="checkout-buttons">
+                  <div className="selected">
+                    <h4>Selected Movie</h4>
+                    {this.state.selectedMovie}
+                  </div>
+                  <div className="selected">
+                    <h4>Selected Customer</h4>
+                    {this.state.selectedCustomer}
+                  </div>
+                  <button type="button" className="btn btn-secondary">Check Out</button>
+                </div>
+
+              </section>
+            </nav>
+
+            <div className="lists">
+              <Route path="/library"
+                render={ (props) =>
+                  <MovieLibrary
+                    {...props}
+                    addMovieRental = {this.addToRentMovie}
+                    />}
+                    />
+                  <Route path="/customers"
+                    render={ (props) =>
+                      <CustomersList
+                        {...props}
+                        addCustomerRental = {this.addCustomerToRent}
+                        />}
+                        />
+                    </div>
+                    <Route path="/search"
+                      render={ (props) => <SearchForm {...props}
+                      addMovie={ (movie) => this.addMovie(movie)}  />}
+                      />
+
                   </div>
                 </div>
               </Router>

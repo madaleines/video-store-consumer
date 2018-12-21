@@ -85,14 +85,14 @@ class SearchForm extends Component {
 
     return (
       <section className="search-form">
-      <h3 className="search-form__header"></h3>
-      <form onSubmit={ this.submitForm } className="search-form__form">
-      <label htmlFor="text" className="search-form__form-label">Movie Title: </label>
-      <textarea type= "text" name="query" value={this.state.query}
-      onChange={ this.onFieldChange } className="search-form__form-text"/>
-      <input type="submit" value="Search" className="search-form__form-button"/>
-      </form>
-      <div>{ list }</div>
+        <h3 className="search-form__header"></h3>
+        <form onSubmit={ this.submitForm } className="search-form__form">
+        <label htmlFor="text" className="search-form__form-label">Movie Title: </label>
+        <textarea type= "text" name="query" value={this.state.query}
+        onChange={ this.onFieldChange } className="search-form__form-text"/>
+        <input type="submit" value="Search" className="search-form__form-button"/>
+        </form>
+        <div>{ list }</div>
       </section>
     )
   }
