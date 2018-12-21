@@ -64,38 +64,32 @@ class App extends Component {
 
             <nav>
               <section className="links">
-                  <div className="search-movies-customer">
-                    <button type="button" className="btn btn-outline-success btn-margin">
-                      <Link to="/search" className="movie-search">Movie Search</Link>
-                    </button>
-                    <button type="button" className="btn btn-outline-success btn-margin">
-                      <Link to="/library" className="movie-library">Movie Library</Link>
-                    </button>
-                    <button type="button" className="btn btn-outline-success" >
+                <div className="search-movies-customer">
+                  <button type="button" className="btn btn-outline-success btn-margin">
+                    <Link to="/search" className="movie-search">Movie Search</Link>
+                  </button>
+                  <button type="button" className="btn btn-outline-success btn-margin">
+                    <Link to="/library" className="movie-library">Movie Library</Link>
+                  </button>
+                  <button type="button" className="btn btn-outline-success" >
                     <Link to="/customers" className="customer-search">Customer List</Link>
-                    </button>
-                  </div>
+                  </button>
+                </div>
 
-                  <div className="checkout-buttons">
-                    <div className="selected">
-                      {this.state.selectedMovie}
-                    </div>
-                    <div className="selected-katrina">
-                      {this.state.selectedCustomer}
-                    </div>
-                    <button type="button">Check Out</button>
+                <div className="checkout-buttons">
+                  <div className="selected">
+                    {this.state.selectedMovie}
                   </div>
+                  <div className="selected">
+                    {this.state.selectedCustomer}
+                  </div>
+                  <button type="button" className="btn btn-outline-success">Check Out</button>
+                </div>
 
-                </section>
+              </section>
             </nav>
 
-
-            <div className="lists-katrina">
-              <Route path="/search"
-                render={ (props) => <SearchForm {...props}
-                addMovie={ (movie) => this.addMovie(movie)}  />}
-                />
-
+            <div className="lists">
               <Route path="/library"
                 render={ (props) =>
                   <MovieLibrary
@@ -110,8 +104,11 @@ class App extends Component {
                         addCustomerRental = {this.addCustomerToRent}
                         />}
                         />
-              </div>
-
+                    </div>
+                    <Route path="/search"
+                      render={ (props) => <SearchForm {...props}
+                      addMovie={ (movie) => this.addMovie(movie)}  />}
+                      />
 
                   </div>
                 </Router>

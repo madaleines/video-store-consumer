@@ -4,24 +4,22 @@ body {
   box-sizing: border-box;
 }
 
-
-
 .main {
-  display: grid;
-  grid-template-rows: 25% 25% 50%;
-  grid-template-columns: 25% 25% 25% 25%;
+  /* display: grid;
+  grid-template-rows: 30% 30% 40%;
+  grid-template-columns: 25% 25% 25% 25%; */
   margin: 2rem 2rem;
-
 }
 
 /* HEADER  */
 
 .title-bar {
-  grid-column-start: 2;
+  width: 100%;
+  /* grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
-  margin-bottom: 10rem;
+   */
 }
 
 /* NAVIGATION SECTION */
@@ -37,9 +35,10 @@ nav  {
   display: flex;
   justify-content: center;
   border: 3px tomato dotted;
-  background-image: url('https://placekitten.com/200/139')
+  background-image: url('https://placekitten.com/200/139');
+  height: 10rem ;
+  width: 100% ;
 }
-
 
 .links {
   display: flex;
@@ -57,21 +56,32 @@ nav  {
 
 .btn-margin {
   margin-right: 5rem;
+  text-decoration: none;
 }
-
 
 /* checkout button, customer selection, movie selection */
 
 .checkout-buttons {
   display: flex;
   border: 2px green solid;
+  color: red;
 }
 
 .selected {
   margin-right: 5rem;
-
 }
 
+a.movie-search:hover {
+  text-decoration: none;
+  color: white;
 
+}
+/* LISTS movies and customers when rendered */
 
-/* LISTS */
+.lists {
+  border: 2px purple solid;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
