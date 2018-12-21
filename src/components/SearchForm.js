@@ -4,16 +4,13 @@ import axios from 'axios';
 import './SearchForm.css';
 import Movie from './Movie';
 
-
 class SearchForm extends Component {
   constructor(props) {
     super(props);
-
     const resetState = {
       query: '',
       searchResults: []
     };
-
     this.state = {...resetState};
     this.resetState = {...resetState}
   }
@@ -33,7 +30,6 @@ class SearchForm extends Component {
     axios.get(SEARCH_URL)
     .then((response) => {
       console.log(response)
-
       this.setState({
         searchResults: response.data
       })
@@ -41,11 +37,8 @@ class SearchForm extends Component {
     .catch((error) => {
       this.setState({ message: error.message});
     })
-
-
     console.log(query)
     console.log(this.state.searchResults)
-
     this.setState(this.resetState);
   }
 
@@ -54,20 +47,21 @@ class SearchForm extends Component {
     const ADD_MOVIE_URL = `http://localhost:3000/movies` + '?external_id=' + externalId;
     axios.post(ADD_MOVIE_URL)
     .then((response) => {
+      console.log(ADD_MOVIE_URL);
       console.log(response);
       alert(`Successfully added ${movie.title} to Library`)
     })
     .catch((error) => {
+      console.log(error);
+      console.log(ADD_MOVIE_URL);
       this.setState({
         error: error.message
       });
     });
-
   }
 
   render() {
     let searchList = this.state.searchResults
-
     const list = searchList.map((movie, index) => {
       return (
         <div key={index}>
@@ -82,13 +76,12 @@ class SearchForm extends Component {
       )
     });
 
-
     return (
       <section className="search-form">
         <h3 className="search-form__header"></h3>
         <form onSubmit={ this.submitForm } className="search-form__form">
-        <label htmlFor="text" className="search-form__form-label">Movie Title: </label>
-        <textarea type= "text" name="query" value={this.state.query}
+        <label htmlFor="text" className="search-form__form-label">Search </label>
+        <textarea rows="1" cols="50" type= "text" name="query" value={this.state.query}
         onChange={ this.onFieldChange } className="search-form__form-text"/>
         <input type="submit" value="Search" className="search-form__form-button"/>
         </form>
@@ -97,9 +90,7 @@ class SearchForm extends Component {
     )
   }
 }
-
 SearchForm.propTypes = {
   addMovie: PropTypes.func.isRequired,
 };
-
 export default SearchForm;

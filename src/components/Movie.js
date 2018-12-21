@@ -14,8 +14,6 @@ class Movie extends Component {
 
   }
 
-
-
   renderMovieDetails = () => {
     return (
       <section>

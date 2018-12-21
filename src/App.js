@@ -4,18 +4,13 @@ import './App.css';
 import SearchForm from './components/SearchForm'
 import MovieLibrary from './components/MovieLibrary'
 import CustomersList from './components/CustomersList'
-import Checkout from './components/Checkout';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
 class App extends Component {
-
   constructor() {
     super();
-
     this.state = {
       movie: null,
       customer: null,
@@ -27,30 +22,25 @@ class App extends Component {
   // rerender selected movie
   addToRentMovie = (movie) => {
     this.setState({
-      movie: movie.title,
-      selectedMovie: movie.title
+      movie: movie,
+      selectedMovie: movie.title,
     })
   }
-
   // rerender selected customer
   addCustomerToRent = (customer) => {
     this.setState({
-      customer: customer.id,
+      customer: customer,
       selectedCustomer: customer.name
     })
   }
 
-
   createRental = () => {
     axios.post(
-      `http://localhost:3000/rentals/${this.state.movie}/check-out`,
-      {customer_id: this.state.customer}
+      `http://localhost:3000/rentals/${this.state.movie.title}/check-out`,
+      {customer_id: this.state.customer.id}
     )
     .then((response) => {
       alert(`Successfully checked out!`)
-      console.log(response.data)
-      console.log(this.state.customer.id)
-      console.log(this.state.movie.id)
       this.setState({
         message: "Successfully saved Rental",
         customer: null,
@@ -62,66 +52,25 @@ class App extends Component {
     });
   }
 
+  addMovie = (movie) => {
+    const ADD_MOVIE_URL = `http://localhost:3000/movies`;
+    axios.post(ADD_MOVIE_URL, movie)
+    .then(() => {
+      this.setState({
+        message: `Added movie` });
+      })
+      .catch((error) => {
+        this.setState( {error: error.message} );
+      })
+    }
 
-  render() {
-    return (
-
-      <Router>
-        <div className="main">
-
-          <header >
-            <Link to="/" className="route-link">Maddy Kat Video Store</Link>
-          </header>
-
-          <nav>
-            <div className="search-movies-customer">
-              <Link to="/search" className="movie-search">Movie Search</Link>
-              <Link to="/library" className="movie-library">Movie Library</Link>
-              <Link to="/customers" className="customer-search">Customer List</Link>
+    render() {
+      return (
+        <Router>
+          <div className="main">
+            <div className="title">
+              <h2 id="header">Mad Kat Videos </h2>
             </div>
-
-            <div className="checkout-buttons">
-              <div className="selected">
-                {this.state.selectedMovie}
-              </div>
-              <div className="selected">
-                {this.state.selectedCustomer}
-              </div>
-              <button Checkout></button>
-            </div>
-
-            <button
-              type="button"
-              onClick={this.createRental}
-              >
-              Checkout
-            </button>
-          </nav>
-
-          <div className="lists">
-            <Route path="/search"
-              render={ (props) => <SearchForm {...props}
-              addMovie={ (movie) => this.addMovie(movie)}  />}
-              />
-
-            <Route path="/library"
-              render={ (props) =>
-                <MovieLibrary
-                  {...props}
-                  addMovieRental = {this.addToRentMovie}
-                  />}
-                  />
-                <Route path="/customers"
-                  render={ (props) =>
-                    <CustomersList
-                      {...props}
-                      addCustomerRental = {this.addCustomerToRent}
-                      />}
-                      />
-              <div className="title">
-                <h2 id="header">Mad Kat Videos </h2>
-              </div>
-
             <nav>
               <section className="links">
                 <div className="search-movies-customer">
@@ -135,7 +84,6 @@ class App extends Component {
                     <Link to="/customers" className="customer-search">Customer List</Link>
                   </button>
                 </div>
-
                 <div className="checkout-buttons">
                   <div className="selected">
                     <h4>Selected Movie</h4>
@@ -145,12 +93,10 @@ class App extends Component {
                     <h4>Selected Customer</h4>
                     {this.state.selectedCustomer}
                   </div>
-                  <button type="button" className="btn btn-secondary">Check Out</button>
+                  <button type="button" onClick={this.createRental} className="btn btn-secondary">Check Out</button>
                 </div>
-
               </section>
             </nav>
-
             <div className="lists">
               <Route path="/library"
                 render={ (props) =>
@@ -171,17 +117,13 @@ class App extends Component {
                       render={ (props) => <SearchForm {...props}
                       addMovie={ (movie) => this.addMovie(movie)}  />}
                       />
-
                   </div>
-                </div>
-              </Router>
-            );
+                </Router>
+              );
+            }
           }
-        }
-
-        App.defaultProps = {
-          title: PropTypes.string,
-          movies: PropTypes.string,
-        }
-
-        export default App;
+          App.defaultProps = {
+            title: PropTypes.string,
+            movies: PropTypes.string,
+          }
+          export default App;
