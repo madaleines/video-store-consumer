@@ -54,13 +54,10 @@ class SearchForm extends Component {
     const ADD_MOVIE_URL = `http://localhost:3000/movies` + '?external_id=' + externalId;
     axios.post(ADD_MOVIE_URL)
     .then((response) => {
-      console.log(ADD_MOVIE_URL);
       console.log(response);
       alert(`Successfully added ${movie.title} to Library`)
     })
     .catch((error) => {
-      console.log(error);
-      console.log(ADD_MOVIE_URL);
       this.setState({
         error: error.message
       });
