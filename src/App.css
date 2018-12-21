@@ -1,14 +1,16 @@
 /* MAIN PAGE */
 
+
 body {
   box-sizing: border-box;
+
 }
 
 .main {
-  /* display: grid;
-  grid-template-rows: 30% 30% 40%;
-  grid-template-columns: 25% 25% 25% 25%; */
+  /* display: grid; */
   margin: 2rem 2rem;
+  padding: inherit;
+
 }
 
 /* HEADER  */
@@ -34,33 +36,40 @@ nav  {
 .title {
   display: flex;
   justify-content: center;
-  border: 3px tomato dotted;
-  background-image: url('https://www.abc.net.au/news/image/9181316-3x2-940x627.jpg');
-  height: 10rem ;
+  background-image: url('https://www.impsandmonsters.com/wp-content/uploads/2014/12/DSC00314.jpg');
+  opacity: 0.8;
   width: 100%;
+  height: 20rem;
   margin-bottom: 5rem;
+  background-repeat: repeat-y;
+  background-size: auto;
+  background-position: center;
+  -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
 }
-/*  mess with the background image */
-.img {
-  max-width: 100%;
-  height: auto;
-  opacity: 0.5;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+
+#header {
+  color: #E7E9EC;
+  text-decoration-style: solid;
+  text-align: justify;
+  letter-spacing: 3px;
+  font-size: 80px;
+  font-style: italic;
+  font-family: "Lucida Console";
 }
 
 .links {
   display: flex;
   justify-content:space-between;
-  border: 2px red solid;
 }
 
 /* search, movie button,  */
 
 .search-movies-customer {
   display: flex;
-  border: 2px blue solid;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .btn-margin {
@@ -72,23 +81,45 @@ nav  {
 
 .checkout-buttons {
   display: flex;
-  border: 2px green solid;
-  color: red;
+  justify-content: space-between;
 }
 
 .selected {
+  border: 5px solid #6C757D;
   margin-right: 5rem;
+  color: #6C757D;
 }
 
-a.movie-search:hover {
+/*  Button formatting with Links */
+a.movie-library {
   text-decoration: none;
   color: white;
+}
+a.movie-library:hover {
+  text-decoration: none;
+  color: #D6DBDF;
+}
 
+a.movie-search {
+  text-decoration: none;
+  color: white;
+}
+a.movie-search:hover {
+  text-decoration: none;
+  color: #D6DBDF;
+}
+
+a.customer-search {
+  text-decoration: none;
+  color: white;
+}
+a.customer-search:hover {
+  text-decoration: none;
+  color: #D6DBDF;
 }
 /* LISTS movies and customers when rendered */
 
 .lists {
-  border: 2px purple solid;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 3;
